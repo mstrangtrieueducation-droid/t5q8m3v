@@ -3,71 +3,665 @@ const choice = (id, prompt, options, answer, explanation, image = "") => ({ id, 
 const input = (id, prompt, answers, explanation, image = "") => ({ id, type: "input", prompt, answers, explanation, image });
 
 const sections = [
-  { letter: "A", title: "Look and write the words.", note: "Quan sát tranh và dùng các từ trong khung: backpack, eraser, pen, pencil, ruler. Có một từ không dùng.", points: 4, sectionImage: A + "page1-img2-968x454.png", questions: [
-    input("A1", "1. Write word 1.", ["pencil"], "Số 1 chỉ chiếc bút chì. Pencil nghĩa là bút chì."),
-    input("A2", "2. Write word 2.", ["eraser"], "Số 2 chỉ cục tẩy. Eraser nghĩa là cục tẩy."),
-    input("A3", "3. Write word 3.", ["pen"], "Số 3 chỉ chiếc bút mực. Pen nghĩa là bút mực."),
-    input("A4", "4. Write word 4.", ["ruler"], "Số 4 chỉ chiếc thước kẻ. Ruler nghĩa là thước kẻ.") ] },
-  { letter: "B", title: "Listen and complete the sentences.", note: "Nghe audio rồi điền đúng từ hoặc số vào mỗi câu.", points: 5, audio: "assets/audio/Listening-B.mp3", questions: [
-    input("B1", "1. My ___ is black and gray.", ["backpack"], "Đồ vật màu đen và xám là backpack - chiếc ba lô."),
-    input("B2", "2. There are ___ pencils on her bed.", ["twenty", "20"], "Audio nói twenty pencils, tức là hai mươi chiếc bút chì."),
-    input("B3", "3. My sister is ___ years old.", ["seventeen", "17"], "Audio nói seventeen years old, tức là mười bảy tuổi."),
-    input("B4", "4. My ___ is very big.", ["notebook"], "Đồ vật được nhắc đến là notebook - quyển vở."),
-    input("B5", "5. My brother is ___ years old.", ["fourteen", "14"], "Audio nói fourteen years old, tức là mười bốn tuổi.") ] },
-  { letter: "C", title: "Look at the pictures. Look at the letters. Write the words.", note: "Quan sát hình, sắp xếp các chữ cái gợi ý rồi viết đúng từ hoặc cụm từ.", points: 4, questions: [
-    input("C1", "1. 9 + 9 = 18", ["answer"], "Kết quả của phép tính được gọi là answer - đáp án."),
-    input("C2", "2. 1, 3, 5, 7", ["odd numbers"], "1, 3, 5, 7 là các số lẻ, tiếng Anh là odd numbers."),
-    input("C3", "3. =", ["equals sign", "equal sign"], "Dấu = được gọi là equals sign. Cách gọi equal sign cũng được chấp nhận."),
-    input("C4", "4. 2, 4, 6, 8", ["even numbers"], "2, 4, 6, 8 là các số chẵn, tiếng Anh là even numbers.") ] },
-  { letter: "D", title: "Circle the correct words.", note: "Chọn từ đúng để hoàn thành từng câu.", points: 4, questions: [
-    choice("D1", "1. You ___ two rulers.", ["has", "have"], "have", "You đi với have: You have two rulers."),
-    choice("D2", "2. I ___ have twenty erasers.", ["don't", "doesn't"], "don't", "I đi với don't: I don't have twenty erasers."),
-    choice("D3", "3. She ___ a ruler.", ["has", "have"], "has", "She là một người, ngôi thứ ba số ít, nên dùng has: She has a ruler."),
-    choice("D4", "4. He ___ have two notebooks.", ["don't", "doesn't"], "doesn't", "He là một người, ngôi thứ ba số ít, nên dùng doesn't. Sau doesn't dùng have: He doesn't have two notebooks.") ] },
-  { letter: "E", title: "Write the words in the correct order to make sentences.", note: "Sắp xếp toàn bộ từ gợi ý thành câu hoàn chỉnh.", points: 4, questions: [
-    input("E1", "1. a / She / sister / have / doesn't", ["she doesn't have a sister"], "She đi với doesn't; sau doesn't dùng have: She doesn't have a sister."),
-    input("E2", "2. have / twelve / don't / notebooks / We", ["we don't have twelve notebooks"], "We đi với don't have: We don't have twelve notebooks."),
-    input("E3", "3. fifteen / They / pencils / have", ["they have fifteen pencils", "they have 15 pencils"], "They đi với have. Fifteen pencils là mười lăm chiếc bút chì."),
-    input("E4", "4. goldfish / He / twenty / has", ["he has twenty goldfish", "he has 20 goldfish"], "He là ngôi thứ ba số ít nên dùng has: He has twenty goldfish.") ] },
-  { letter: "F", title: "Look and complete the sentences. Use a form of have.", note: "Quan sát tranh rồi dùng have, has, don't have hoặc doesn't have để hoàn thành câu.", points: 4, sectionImage: A + "page2-img1-2847x1096.png", questions: [
-    input("F1", "1. He ___ a jacket.", ["doesn't have", "does not have"], "Trong tranh số 1, bạn nam không có áo khoác. He đi với doesn't have."),
-    input("F2", "2. They ___ four rabbits.", ["don't have", "do not have"], "Trong tranh số 2 chỉ có ba con thỏ, không phải bốn. They đi với don't have."),
-    input("F3", "3. She ___ a new sun hat.", ["has"], "Trong tranh số 3, cô bé có một chiếc mũ che nắng mới. She đi với has."),
-    input("F4", "4. We ___ six flowers.", ["don't have", "do not have"], "Trong tranh số 4, hai bạn không có sáu bông hoa. We đi với don't have. Đáp án nguồn bị thiếu từ have; câu đầy đủ phải là We don't have six flowers.") ] },
-  { letter: "G", title: "Look and circle the correct words.", note: "Quan sát từng hình rồi chọn đúng tên thực phẩm.", points: 5, questions: [
-    choice("G1", "1. Choose the correct word.", ["tomato", "mango"], "mango", "Hình 1 là quả xoài - mango.", A + "page3-img1-525x375.png"),
-    choice("G2", "2. Choose the correct word.", ["sausage", "cucumber"], "sausage", "Hình 2 là những lát xúc xích - sausage.", A + "page3-img2-525x375.png"),
-    choice("G3", "3. Choose the correct word.", ["peach", "potato"], "potato", "Hình 3 là củ khoai tây - potato.", A + "page3-img5-525x375.png"),
-    choice("G4", "4. Choose the correct word.", ["onion", "tomato"], "tomato", "Hình 4 là quả cà chua - tomato.", A + "page3-img3-525x375.png"),
-    choice("G5", "5. Choose the correct word.", ["avocado", "mango"], "avocado", "Hình 5 là quả bơ - avocado.", A + "page3-img8-525x375.png") ] },
-  { letter: "H", title: "Look and complete the words.", note: "Quan sát hình và điền các chữ cái còn thiếu để hoàn thành từ.", points: 5, questions: [
-    input("H1", "1. c _ _ _ _ t _", ["carrots"], "Hình 1 là nhiều củ cà rốt, nên dùng dạng số nhiều carrots.", A + "page3-img4-525x375.png"),
-    input("H2", "2. p _ _ a _ _ _ s", ["potatoes"], "Hình 2 là nhiều củ khoai tây, nên viết potatoes.", A + "page3-img5-525x375.png"),
-    input("H3", "3. s _ _ _ _", ["stone"], "Hình 3 là một hòn đá - stone.", A + "page3-img9-525x375.png"),
-    input("H4", "4. s _ _ _", ["soup"], "Hình 4 là một bát súp - soup.", A + "page3-img6-525x375.png"),
-    input("H5", "5. o _ _ _ _ _", ["onions"], "Hình 5 có nhiều củ hành, nên viết onions.", A + "page3-img10-525x375.png") ] },
-  { letter: "I", title: "Listen and complete the sentences.", note: "Nghe audio rồi hoàn thành câu bằng đúng từ và cấu trúc em nghe được.", points: 3, audio: "assets/audio/Listening-I.mp3", questions: [
-    input("I1", "1. It's ___.", ["an orange"], "Orange bắt đầu bằng nguyên âm nên dùng an: It's an orange."),
-    input("I2", "2. It's ___.", ["a pot"], "Pot là danh từ số ít bắt đầu bằng phụ âm nên dùng a: It's a pot."),
-    input("I3", "3. They're ___.", ["sausages"], "They're nghĩa là They are. Hình có nhiều xúc xích nên dùng sausages.") ] },
-  { letter: "J", title: "Circle the correct words.", note: "Chọn Do hoặc Does phù hợp với chủ ngữ của câu hỏi.", points: 4, questions: [
-    choice("J1", "1. What ___ she have?", ["do", "does"], "does", "She là ngôi thứ ba số ít nên câu hỏi dùng does: What does she have?"),
-    choice("J2", "2. ___ you have sausages?", ["Do", "Does"], "Do", "You đi với Do: Do you have sausages?"),
-    choice("J3", "3. What ___ he have?", ["do", "does"], "does", "He là ngôi thứ ba số ít nên dùng does. Sau does vẫn là have."),
-    choice("J4", "4. ___ they have ten stones?", ["Do", "Does"], "Do", "They đi với Do: Do they have ten stones?") ] },
-  { letter: "K", title: "Write the questions. Look at the pictures and complete the answers.", note: "Sắp xếp từ thành câu hỏi, sau đó quan sát tranh và viết câu trả lời đầy đủ.", points: 8, questions: [
-    input("K1", "1a. have / does / What / he", ["what does he have"], "Với he, câu hỏi bắt đầu bằng What does, sau đó dùng have: What does he have?", A + "page4-img2-271x286.png"),
-    input("K2", "1b. He has ___ potatoes.", ["six", "6"], "Trong giỏ có sáu củ khoai tây, nên câu trả lời là He has six potatoes."),
-    input("K3", "2a. have / she / Does / sausages", ["does she have sausages"], "Với she, dùng Does ở đầu và have ở dạng nguyên mẫu: Does she have sausages?", A + "page4-img3-235x280.png"),
-    input("K4", "2b. ___, she ___.", ["no she doesn't", "no she does not"], "Tranh cho thấy cô bé đang ăn súp, không phải xúc xích: No, she doesn't."),
-    input("K5", "3a. they / What / have / do", ["what do they have"], "They đi với do: What do they have?", A + "page4-img1-235x174.png"),
-    input("K6", "3b. They have ___ pots.", ["two", "2"], "Trong tranh có hai bạn và mỗi bạn cầm một chiếc nồi: They have two pots."),
-    input("K7", "4a. stones / we / Do / have", ["do we have stones"], "We đi với Do: Do we have stones?", A + "page4-img4-363x279.png"),
-    input("K8", "4b. ___, we ___.", ["no we don't", "no we do not"], "Trong tranh hai bạn cầm cà rốt, không phải đá: No, we don't.") ] }
+  {
+    "letter": "A",
+    "title": "Look and write the words.",
+    "note": "Quan sát tranh và dùng các từ trong khung: backpack, eraser, pen, pencil, ruler. Có một từ không dùng.",
+    "points": 4,
+    "sectionImage": "assets/extracted/page1-img2-968x454.png",
+    "questions": [
+      {
+        "id": "A1",
+        "type": "input",
+        "prompt": "1. Write word 1.",
+        "answers": [
+          "pencil"
+        ],
+        "explanation": "Số 1 chỉ chiếc bút chì. Pencil nghĩa là bút chì.",
+        "image": ""
+      },
+      {
+        "id": "A2",
+        "type": "input",
+        "prompt": "2. Write word 2.",
+        "answers": [
+          "eraser"
+        ],
+        "explanation": "Số 2 chỉ cục tẩy. Eraser nghĩa là cục tẩy.",
+        "image": ""
+      },
+      {
+        "id": "A3",
+        "type": "input",
+        "prompt": "3. Write word 3.",
+        "answers": [
+          "pen"
+        ],
+        "explanation": "Số 3 chỉ chiếc bút mực. Pen nghĩa là bút mực.",
+        "image": ""
+      },
+      {
+        "id": "A4",
+        "type": "input",
+        "prompt": "4. Write word 4.",
+        "answers": [
+          "ruler"
+        ],
+        "explanation": "Số 4 chỉ chiếc thước kẻ. Ruler nghĩa là thước kẻ.",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "letter": "B",
+    "title": "Listen and complete the sentences.",
+    "note": "Nghe audio rồi điền đúng từ hoặc số vào mỗi câu.",
+    "points": 5,
+    "audio": "assets/audio/Listening-B.mp3",
+    "questions": [
+      {
+        "id": "B1",
+        "type": "input",
+        "prompt": "1. My ___ is black and gray.",
+        "answers": [
+          "backpack"
+        ],
+        "explanation": "Đồ vật màu đen và xám là backpack - chiếc ba lô.",
+        "image": ""
+      },
+      {
+        "id": "B2",
+        "type": "input",
+        "prompt": "2. There are ___ pencils on her bed.",
+        "answers": [
+          "twenty",
+          "20"
+        ],
+        "explanation": "Audio nói twenty pencils, tức là hai mươi chiếc bút chì.",
+        "image": ""
+      },
+      {
+        "id": "B3",
+        "type": "input",
+        "prompt": "3. My sister is ___ years old.",
+        "answers": [
+          "seventeen",
+          "17"
+        ],
+        "explanation": "Audio nói seventeen years old, tức là mười bảy tuổi.",
+        "image": ""
+      },
+      {
+        "id": "B4",
+        "type": "input",
+        "prompt": "4. My ___ is very big.",
+        "answers": [
+          "notebook"
+        ],
+        "explanation": "Đồ vật được nhắc đến là notebook - quyển vở.",
+        "image": ""
+      },
+      {
+        "id": "B5",
+        "type": "input",
+        "prompt": "5. My brother is ___ years old.",
+        "answers": [
+          "fourteen",
+          "14"
+        ],
+        "explanation": "Audio nói fourteen years old, tức là mười bốn tuổi.",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "letter": "C",
+    "title": "Look at the pictures. Look at the letters. Write the words.",
+    "note": "Quan sát hình, sắp xếp các chữ cái gợi ý rồi viết đúng từ hoặc cụm từ.",
+    "points": 4,
+    "questions": [
+      {
+        "id": "C1",
+        "type": "input",
+        "prompt": "1. 9 + 9 = 18",
+        "answers": [
+          "answer"
+        ],
+        "explanation": "Kết quả của phép tính được gọi là answer - đáp án.",
+        "image": ""
+      },
+      {
+        "id": "C2",
+        "type": "input",
+        "prompt": "2. 1, 3, 5, 7",
+        "answers": [
+          "odd numbers"
+        ],
+        "explanation": "1, 3, 5, 7 là các số lẻ, tiếng Anh là odd numbers.",
+        "image": ""
+      },
+      {
+        "id": "C3",
+        "type": "input",
+        "prompt": "3. =",
+        "answers": [
+          "equals sign",
+          "equal sign"
+        ],
+        "explanation": "Dấu = được gọi là equals sign. Cách gọi equal sign cũng được chấp nhận.",
+        "image": ""
+      },
+      {
+        "id": "C4",
+        "type": "input",
+        "prompt": "4. 2, 4, 6, 8",
+        "answers": [
+          "even numbers"
+        ],
+        "explanation": "2, 4, 6, 8 là các số chẵn, tiếng Anh là even numbers.",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "letter": "D",
+    "title": "Circle the correct words.",
+    "note": "Chọn từ đúng để hoàn thành từng câu.",
+    "points": 4,
+    "questions": [
+      {
+        "id": "D1",
+        "type": "choice",
+        "prompt": "1. You ___ two rulers.",
+        "options": [
+          "has",
+          "have"
+        ],
+        "answers": [
+          "have"
+        ],
+        "explanation": "You đi với have: You have two rulers.",
+        "image": ""
+      },
+      {
+        "id": "D2",
+        "type": "choice",
+        "prompt": "2. I ___ have twenty erasers.",
+        "options": [
+          "don't",
+          "doesn't"
+        ],
+        "answers": [
+          "don't"
+        ],
+        "explanation": "I đi với don't: I don't have twenty erasers.",
+        "image": ""
+      },
+      {
+        "id": "D3",
+        "type": "choice",
+        "prompt": "3. She ___ a ruler.",
+        "options": [
+          "has",
+          "have"
+        ],
+        "answers": [
+          "has"
+        ],
+        "explanation": "She là một người, ngôi thứ ba số ít, nên dùng has: She has a ruler.",
+        "image": ""
+      },
+      {
+        "id": "D4",
+        "type": "choice",
+        "prompt": "4. He ___ have two notebooks.",
+        "options": [
+          "don't",
+          "doesn't"
+        ],
+        "answers": [
+          "doesn't"
+        ],
+        "explanation": "He là một người, ngôi thứ ba số ít, nên dùng doesn't. Sau doesn't dùng have: He doesn't have two notebooks.",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "letter": "E",
+    "title": "Write the words in the correct order to make sentences.",
+    "note": "Sắp xếp toàn bộ từ gợi ý thành câu hoàn chỉnh.",
+    "points": 4,
+    "questions": [
+      {
+        "id": "E1",
+        "type": "input",
+        "prompt": "1. a / She / sister / have / doesn't",
+        "answers": [
+          "she doesn't have a sister"
+        ],
+        "explanation": "She đi với doesn't; sau doesn't dùng have: She doesn't have a sister.",
+        "image": ""
+      },
+      {
+        "id": "E2",
+        "type": "input",
+        "prompt": "2. have / twelve / don't / notebooks / We",
+        "answers": [
+          "we don't have twelve notebooks"
+        ],
+        "explanation": "We đi với don't have: We don't have twelve notebooks.",
+        "image": ""
+      },
+      {
+        "id": "E3",
+        "type": "input",
+        "prompt": "3. fifteen / They / pencils / have",
+        "answers": [
+          "they have fifteen pencils",
+          "they have 15 pencils"
+        ],
+        "explanation": "They đi với have. Fifteen pencils là mười lăm chiếc bút chì.",
+        "image": ""
+      },
+      {
+        "id": "E4",
+        "type": "input",
+        "prompt": "4. goldfish / He / twenty / has",
+        "answers": [
+          "he has twenty goldfish",
+          "he has 20 goldfish"
+        ],
+        "explanation": "He là ngôi thứ ba số ít nên dùng has: He has twenty goldfish.",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "letter": "F",
+    "title": "Look and complete the sentences. Use a form of have.",
+    "note": "Quan sát tranh rồi dùng have, has, don't have hoặc doesn't have để hoàn thành câu.",
+    "points": 4,
+    "sectionImage": "assets/extracted/page2-img1-2847x1096.png",
+    "questions": [
+      {
+        "id": "F1",
+        "type": "input",
+        "prompt": "1. He ___ a jacket.",
+        "answers": [
+          "doesn't have",
+          "does not have"
+        ],
+        "explanation": "Trong tranh số 1, bạn nam không có áo khoác. He đi với doesn't have.",
+        "image": ""
+      },
+      {
+        "id": "F2",
+        "type": "input",
+        "prompt": "2. They ___ four rabbits.",
+        "answers": [
+          "don't have",
+          "do not have"
+        ],
+        "explanation": "Trong tranh số 2 chỉ có ba con thỏ, không phải bốn. They đi với don't have.",
+        "image": ""
+      },
+      {
+        "id": "F3",
+        "type": "input",
+        "prompt": "3. She ___ a new sun hat.",
+        "answers": [
+          "has"
+        ],
+        "explanation": "Trong tranh số 3, cô bé có một chiếc mũ che nắng mới. She đi với has.",
+        "image": ""
+      },
+      {
+        "id": "F4",
+        "type": "input",
+        "prompt": "4. We ___ six flowers.",
+        "answers": [
+          "don't have",
+          "do not have"
+        ],
+        "explanation": "Trong tranh số 4, hai bạn không có sáu bông hoa. We đi với don't have. Đáp án nguồn bị thiếu từ have; câu đầy đủ phải là We don't have six flowers.",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "letter": "G",
+    "title": "Look and circle the correct words.",
+    "note": "Quan sát từng hình rồi chọn đúng tên thực phẩm.",
+    "points": 5,
+    "questions": [
+      {
+        "id": "G1",
+        "type": "choice",
+        "prompt": "1. Choose the correct word.",
+        "options": [
+          "tomato",
+          "mango"
+        ],
+        "answers": [
+          "mango"
+        ],
+        "explanation": "Hình 1 là quả xoài - mango.",
+        "image": "assets/extracted/page3-img1-525x375.png"
+      },
+      {
+        "id": "G2",
+        "type": "choice",
+        "prompt": "2. Choose the correct word.",
+        "options": [
+          "sausage",
+          "cucumber"
+        ],
+        "answers": [
+          "cucumber"
+        ],
+        "explanation": "Hình 2 là các lát dưa chuột; bản đáp án gốc khoanh cucumber.",
+        "image": "assets/extracted/page3-img2-525x375.png"
+      },
+      {
+        "id": "G3",
+        "type": "choice",
+        "prompt": "3. Choose the correct word.",
+        "options": [
+          "peach",
+          "potato"
+        ],
+        "answers": [
+          "peach"
+        ],
+        "explanation": "Hình 3 là quả đào; bản đáp án gốc khoanh peach, không phải potato.",
+        "image": "assets/extracted/page3-img5-525x375.png"
+      },
+      {
+        "id": "G4",
+        "type": "choice",
+        "prompt": "4. Choose the correct word.",
+        "options": [
+          "onion",
+          "tomato"
+        ],
+        "answers": [
+          "tomato"
+        ],
+        "explanation": "Hình 4 là quả cà chua - tomato.",
+        "image": "assets/extracted/page3-img3-525x375.png"
+      },
+      {
+        "id": "G5",
+        "type": "choice",
+        "prompt": "5. Choose the correct word.",
+        "options": [
+          "avocado",
+          "mango"
+        ],
+        "answers": [
+          "avocado"
+        ],
+        "explanation": "Hình 5 là quả bơ - avocado.",
+        "image": "assets/extracted/page3-img8-525x375.png"
+      }
+    ]
+  },
+  {
+    "letter": "H",
+    "title": "Look and complete the words.",
+    "note": "Quan sát hình và điền các chữ cái còn thiếu để hoàn thành từ.",
+    "points": 5,
+    "questions": [
+      {
+        "id": "H1",
+        "type": "input",
+        "prompt": "1. c _ _ _ _ t _",
+        "answers": [
+          "carrots"
+        ],
+        "explanation": "Hình 1 là nhiều củ cà rốt, nên dùng dạng số nhiều carrots.",
+        "image": "assets/extracted/page3-img4-525x375.png"
+      },
+      {
+        "id": "H2",
+        "type": "input",
+        "prompt": "2. p _ _ a _ _ _ s",
+        "answers": [
+          "potatoes"
+        ],
+        "explanation": "Hình 2 là nhiều củ khoai tây, nên viết potatoes.",
+        "image": "assets/extracted/page3-img5-525x375.png"
+      },
+      {
+        "id": "H3",
+        "type": "input",
+        "prompt": "3. s _ _ _ _",
+        "answers": [
+          "stone"
+        ],
+        "explanation": "Hình 3 là một hòn đá - stone.",
+        "image": "assets/extracted/page3-img9-525x375.png"
+      },
+      {
+        "id": "H4",
+        "type": "input",
+        "prompt": "4. s _ _ _",
+        "answers": [
+          "soup"
+        ],
+        "explanation": "Hình 4 là một bát súp - soup.",
+        "image": "assets/extracted/page3-img6-525x375.png"
+      },
+      {
+        "id": "H5",
+        "type": "input",
+        "prompt": "5. o _ _ _ _ _",
+        "answers": [
+          "onions"
+        ],
+        "explanation": "Hình 5 có nhiều củ hành, nên viết onions.",
+        "image": "assets/extracted/page3-img10-525x375.png"
+      }
+    ]
+  },
+  {
+    "letter": "I",
+    "title": "Listen and complete the sentences.",
+    "note": "Nghe audio rồi hoàn thành câu bằng đúng từ và cấu trúc em nghe được.",
+    "points": 3,
+    "audio": "assets/audio/Listening-I.mp3",
+    "questions": [
+      {
+        "id": "I1",
+        "type": "input",
+        "prompt": "1. It's ___.",
+        "answers": [
+          "an orange"
+        ],
+        "explanation": "Orange bắt đầu bằng nguyên âm nên dùng an: It's an orange.",
+        "image": ""
+      },
+      {
+        "id": "I2",
+        "type": "input",
+        "prompt": "2. It's ___.",
+        "answers": [
+          "a pot"
+        ],
+        "explanation": "Pot là danh từ số ít bắt đầu bằng phụ âm nên dùng a: It's a pot.",
+        "image": ""
+      },
+      {
+        "id": "I3",
+        "type": "input",
+        "prompt": "3. They're ___.",
+        "answers": [
+          "sausages"
+        ],
+        "explanation": "They're nghĩa là They are. Hình có nhiều xúc xích nên dùng sausages.",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "letter": "J",
+    "title": "Circle the correct words.",
+    "note": "Chọn Do hoặc Does phù hợp với chủ ngữ của câu hỏi.",
+    "points": 4,
+    "questions": [
+      {
+        "id": "J1",
+        "type": "choice",
+        "prompt": "1. What ___ she have?",
+        "options": [
+          "do",
+          "does"
+        ],
+        "answers": [
+          "does"
+        ],
+        "explanation": "She là ngôi thứ ba số ít nên câu hỏi dùng does: What does she have?",
+        "image": ""
+      },
+      {
+        "id": "J2",
+        "type": "choice",
+        "prompt": "2. ___ you have sausages?",
+        "options": [
+          "Do",
+          "Does"
+        ],
+        "answers": [
+          "Do"
+        ],
+        "explanation": "You đi với Do: Do you have sausages?",
+        "image": ""
+      },
+      {
+        "id": "J3",
+        "type": "choice",
+        "prompt": "3. What ___ he have?",
+        "options": [
+          "do",
+          "does"
+        ],
+        "answers": [
+          "does"
+        ],
+        "explanation": "He là ngôi thứ ba số ít nên dùng does. Sau does vẫn là have.",
+        "image": ""
+      },
+      {
+        "id": "J4",
+        "type": "choice",
+        "prompt": "4. ___ they have ten stones?",
+        "options": [
+          "Do",
+          "Does"
+        ],
+        "answers": [
+          "Do"
+        ],
+        "explanation": "They đi với Do: Do they have ten stones?",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "letter": "K",
+    "title": "Write the questions. Look at the pictures and complete the answers.",
+    "note": "Câu a: viết câu hỏi đầy đủ. Câu 1b và 3b: chỉ điền phần còn thiếu trước potatoes/pots. Câu 2b và 4b: viết câu trả lời đầy đủ.",
+    "points": 8,
+    "questions": [
+      {
+        "id": "K1",
+        "type": "input",
+        "prompt": "1a. have / does / What / he",
+        "answers": [
+          "what does he have"
+        ],
+        "explanation": "Với he, câu hỏi bắt đầu bằng What does, sau đó dùng have: What does he have?",
+        "image": "assets/extracted/page4-img2-271x286.png"
+      },
+      {
+        "id": "K2",
+        "type": "input",
+        "prompt": "1b. ___ potatoes.",
+        "answers": [
+          "he has"
+        ],
+        "explanation": "Câu hỏi là What does he have? Đáp án gốc là He has potatoes, nên điền He has. Câu này không yêu cầu đếm số khoai tây.",
+        "image": ""
+      },
+      {
+        "id": "K3",
+        "type": "input",
+        "prompt": "2a. have / she / Does / sausages",
+        "answers": [
+          "does she have sausages"
+        ],
+        "explanation": "Với she, dùng Does ở đầu và have ở dạng nguyên mẫu: Does she have sausages?",
+        "image": "assets/extracted/page4-img3-235x280.png"
+      },
+      {
+        "id": "K4",
+        "type": "input",
+        "prompt": "2b. ___, she ___.",
+        "answers": [
+          "no she doesn't",
+          "no she does not"
+        ],
+        "explanation": "Tranh cho thấy cô bé đang ăn súp, không phải xúc xích: No, she doesn't.",
+        "image": ""
+      },
+      {
+        "id": "K5",
+        "type": "input",
+        "prompt": "3a. they / What / have / do",
+        "answers": [
+          "what do they have"
+        ],
+        "explanation": "They đi với do: What do they have?",
+        "image": "assets/extracted/page4-img1-235x174.png"
+      },
+      {
+        "id": "K6",
+        "type": "input",
+        "prompt": "3b. ___ pots.",
+        "answers": [
+          "they have"
+        ],
+        "explanation": "Câu hỏi là What do they have? Đáp án gốc là They have pots, nên điền They have. Câu này không yêu cầu đếm số nồi.",
+        "image": ""
+      },
+      {
+        "id": "K7",
+        "type": "input",
+        "prompt": "4a. stones / we / Do / have",
+        "answers": [
+          "do we have stones"
+        ],
+        "explanation": "We đi với Do: Do we have stones?",
+        "image": "assets/extracted/page4-img4-363x279.png"
+      },
+      {
+        "id": "K8",
+        "type": "input",
+        "prompt": "4b. ___, we ___.",
+        "answers": [
+          "no we don't",
+          "no we do not"
+        ],
+        "explanation": "Trong tranh hai bạn cầm cà rốt, không phải đá: No, we don't.",
+        "image": ""
+      }
+    ]
+  }
 ];
 
 const form = document.querySelector("#testForm"), root = document.querySelector("#sections"), jumpRoot = document.querySelector("#sectionJump"), progressText = document.querySelector("#progressText"), progressBar = document.querySelector("#progressBar"), results = document.querySelector("#results"), answerReview = document.querySelector("#answerReview"), scoreValue = document.querySelector("#scoreValue"), scoreMessage = document.querySelector("#scoreMessage");
-const STORAGE_KEY = "discover1-written-test5-v1";
+const STORAGE_KEY = "discover1-written-test5-v1-source-audit-v2";
 render(); restore(); update();
 
 form.addEventListener("click", e => { const b = e.target.closest("[data-choice]"); if (!b) return; const q = b.closest(".question"); q.querySelectorAll("[data-choice]").forEach(x => { x.classList.toggle("is-selected", x === b); x.setAttribute("aria-pressed", x === b ? "true" : "false"); }); q.dataset.value = b.dataset.value; q.classList.remove("is-missing"); save(); update(); });
@@ -80,7 +674,8 @@ function render() { sections.forEach(s => { const j = document.createElement("bu
 function question(s,q,i) { const label = s.letter + (i + 1); const control = q.type === "choice" ? `<div class="choice-grid">${q.options.map((o,n) => `<button type="button" class="choice" data-choice data-value="${esc(o)}" aria-pressed="false"><span class="choice-key">${String.fromCharCode(65+n)}</span><span>${o}</span></button>`).join("")}</div>` : `<input class="answer-input" autocomplete="off" spellcheck="false" placeholder="Nhập câu trả lời">`; return `<article class="question" data-id="${q.id}"><span class="question-number">${label}</span><div class="question-copy">${q.image ? `<img class="question-image" src="${q.image}" alt="Hình minh hoạ câu ${label}">` : ""}<p class="question-prompt">${q.prompt}</p>${control}</div></article>`; }
 function sectionImage(s) { return s.sectionImage ? `<img class="source-image" src="${s.sectionImage}" alt="Hình minh hoạ phần ${s.letter}">` : ""; }
 function norm(v) { return String(v||"").toLowerCase().replace(/[’‘`]/g,"'").replace(/[?.!,]/g,"").replace(/-/g," ").replace(/\s+/g," ").trim(); }
-function matches(v,a) { const n = norm(v).replace(/does not/g,"doesn't").replace(/do not/g,"don't"); return a.some(x => norm(x).replace(/does not/g,"doesn't").replace(/do not/g,"don't") === n); }
+function matches(value, accepted) { return DiscoverAnswerMatcher.matches(value, accepted); }
+
 function missing() { const out=[]; sections.forEach(s => s.questions.forEach(q => { const el=document.querySelector(`[data-id="${q.id}"]`); if(q.type==="choice"){if(!el.dataset.value) out.push(el.querySelector(".choice"));} else {const f=el.querySelector("input"); if(!f.value.trim()) out.push(f);} })); return out; }
 function grade() { let score=0, reviews=[]; sections.forEach(s => s.questions.forEach((q,i) => { const el=document.querySelector(`[data-id="${q.id}"]`), value=q.type==="choice" ? el.dataset.value||"" : el.querySelector("input").value, correct=matches(value,q.answers); if(correct) score++; reviews.push({q,label:s.letter+(i+1),value,correct}); })); scoreValue.textContent=score; scoreMessage.textContent=score===50 ? "Em đã làm đúng toàn bộ bài." : `Em cần chữa ${50-score} ý. Hãy đọc kỹ giải thích và đối chiếu lại câu gốc.`; answerReview.innerHTML=reviews.map(r => `<article class="review-card ${r.correct?"":"is-wrong"}"><div class="review-head"><h3>Câu ${r.label}</h3><span class="review-status">${r.correct?"1/1":"0/1"} điểm</span></div><p class="review-question">${r.q.prompt}</p><div class="review-answer"><span>Em trả lời: <b>${html(r.value||"(trống)")}</b></span><span>Đáp án: <b>${html(r.q.answers[0])}</b></span></div><p class="explanation"><b>Giải thích:</b> ${r.q.explanation}</p></article>`).join(""); results.hidden=false; form.hidden=true; document.querySelector("#stickyProgress").hidden=true; results.scrollIntoView({behavior:"smooth"}); }
 function update() { let total=0; sections.forEach(s => { let c=0; s.questions.forEach(q => { const el=document.querySelector(`[data-id="${q.id}"]`), done=q.type==="choice" ? !!el.dataset.value : !!el.querySelector("input").value.trim(); if(done){total++;c++;} }); const j=document.querySelector(`[data-jump="${s.letter}"]`); j.classList.toggle("has-progress",c>0); j.classList.toggle("is-complete",c===s.questions.length); }); progressText.textContent=`${total} / 50`; progressBar.style.width=`${total*2}%`; }

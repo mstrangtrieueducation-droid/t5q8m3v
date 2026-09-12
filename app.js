@@ -145,10 +145,9 @@ const sections = [
         "type": "input",
         "prompt": "3. =",
         "answers": [
-          "equals sign",
-          "equal sign"
+          "equals sign"
         ],
-        "explanation": "Dấu = được gọi là equals sign. Cách gọi equal sign cũng được chấp nhận.",
+        "explanation": "Các chữ cái cho sẵn ghép thành equals sign. Em cần dùng đủ các chữ cái của đề, không thêm hoặc bớt chữ.",
         "image": ""
       },
       {
